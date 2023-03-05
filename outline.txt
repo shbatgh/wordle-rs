@@ -1,0 +1,11 @@
+Read all words into vec
+Select a random one to be the answer in a hashmap
+Set the checker equal to an array of 5 Wrongs
+Loop until all guesses are used
+    Store user input into a hashmap with the keys being the index
+    Validate the guess
+    Loop through the .zip of the word and answer
+        If the letters are equal add Correct to the corresponding index in the checker
+            Remove the key-value pair at that index
+        Loop through answer
+            If the index is not already correct and the letter equals the guess letter add Misplaced to the checker 
