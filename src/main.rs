@@ -30,7 +30,7 @@ fn main() {
     let mut count = 0;
 
     println!("Welcome to Wordle! You have 5 guesses to guess the word. Good luck!");
-    println!("{answer}");
+    //println!("{answer}");
 
     loop {
         let mut guess = String::new();
@@ -61,7 +61,7 @@ fn main() {
 
         evaluate(answer.as_str(), guess.as_str(), count);
         print_correctness(evaluate(answer.as_str(), guess.as_str(), count), guess.clone());
-        println!("{:?}", evaluate(answer.as_str(), guess.as_str(), count));
+        //println!("{:?}", evaluate(answer.as_str(), guess.as_str(), count));
 
         count += 1;
     }
