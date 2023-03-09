@@ -26,8 +26,7 @@ enum Validation {
 fn main() {
     let answers = get_answers("C:/Users/grand/dev/learning_rust/wordle/words/answers.txt");
     let guesses = get_answers("C:/Users/grand/dev/learning_rust/wordle/words/guesses.txt");
-    //let answer = answers[rand::thread_rng().gen_range(1..=answers.len())].clone();
-    let answer = String::from("polar");
+    let answer = answers[rand::thread_rng().gen_range(1..=answers.len())].clone();
     let mut count = 0;
 
     println!("Welcome to Wordle! You have 5 guesses to guess the word. Good luck!");
@@ -53,10 +52,10 @@ fn main() {
         if guess.trim().len() != 5 {
             println!("Not 5 letters");
             continue;
-        } /*else if !guesses.contains(&String::from(guess.trim())) {
+        } else if !guesses.contains(&String::from(guess.trim())) {
             println!("Not a word");
             continue;
-        }*/ else {
+        } else {
             println!("Valid");
         }
 
@@ -72,7 +71,6 @@ fn evaluate(answer: &str, guess: &str, count: i32) -> Vec<Correctness> {
     let mut checker = vec![Correctness::Incorrect; 5];
 
     let mut unaccounted_for = [0; (b'z' - b'a' + 1) as usize];
-    //let mut account_for_repeats: Vec<char> = Vec::new();
 
     for (idx, (g, a)) in guess.trim().bytes().zip(answer.bytes()).enumerate() {
         if g == a {
@@ -92,28 +90,6 @@ fn evaluate(answer: &str, guess: &str, count: i32) -> Vec<Correctness> {
             unaccounted_for[(g - b'a') as usize] -= 1;
         }
     }
-        
-        /*else if answer.contains(g as char) {
-            /*let repeats = check_for_repeats(String::from(answer.trim()), g as char);
-            let idx_at_answer = &answer.find(g as char).unwrap();
-
-            if !accounted_for.contains(&(idx as usize)) {
-                checker[idx as usize] = Correctness::Misplaced;
-                accounted_for.push(idx as usize);
-                account_for_repeats.push(i as usize);
-            }*/
-            /*for i in repeats {
-                
-            }*/
-            
-            for i in 0..answer.len() {
-                if answer.as_bytes()[i]  == g && !accounted_for.contains(&idx) {
-                    println!("{}", answer.as_bytes()[i]);
-                    checker[i] = Correctness::Misplaced;
-                    accounted_for.push(idx);
-                }
-            }
-        }*/
 
     checker
 }
@@ -149,11 +125,6 @@ fn print_correctness(correctness: Vec<Correctness>, guess: String) {
     }
 
     println!();
-}
-
-// Implement the .contains() method for Vec<i32> and return the indice of the letter
-fn contains_return_indices() {
-
 }
 
 #[cfg(test)]
